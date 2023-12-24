@@ -83,4 +83,5 @@ javascript:(function() {
     }
 
     toggleSelectionMode();
+    
 })();
