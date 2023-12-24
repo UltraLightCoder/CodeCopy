@@ -34,6 +34,13 @@ javascript:(function() {
         return formatted.trim();
     }
 
+    function removeOutlineStyle(html, element) {
+        let tempElement = document.createElement('div');
+        tempElement.innerHTML = html;
+        tempElement.querySelector('*').style.outline = '';
+        return tempElement.innerHTML;
+    }
+
     function toggleSelectionMode() {
         if (!selectionMode) {
             document.addEventListener('mouseover', mouseoverHandler, false);
@@ -65,6 +72,7 @@ javascript:(function() {
             e.preventDefault();
             e.stopPropagation();
             let html = beautifyHtml(currentElement.outerHTML);
+            html = removeOutlineStyle(html, currentElement);
             copyToClipboard(html);
             currentElement.style.outline = '2px solid green';
             setTimeout(function() {
